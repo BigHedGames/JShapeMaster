@@ -152,7 +152,7 @@ public class JSMBoard extends JPanel implements ActionListener {
 				//g2d.drawImage(a.getImage(), a.getX(), a.getY(), spriteSize, spriteSize, this);
 				g2d.drawImage(a.getImage(), 
 						a.getX(), a.getY(), a.getX()+(spriteSize+1), a.getY()+(spriteSize+1), 
-						(a.myAnimation*128), (a.getShape()*256), (a.myAnimation*128)+127, (a.getShape()*256)+127, this);
+						(a.myAnimation*128), a.getMyShape(), (a.myAnimation*128)+127, (a.getMyShape())+127, this);
 				g2d.drawImage(a.getImageEyes(), 
 						a.getX(), a.getY(), a.getX()+(spriteSize+1), a.getY()+(spriteSize+1), 
 						(0*128), (0*128), (0*128)+127, (0*128)+127, this);

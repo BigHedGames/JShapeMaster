@@ -97,6 +97,14 @@ public class Shape {
 	public int getShape() {
 		return myShape;
 	}
+
+	public int getMyShape() {
+		if (myShape == Master.masterAnimationShape ){
+			return ((myShape*256)+128);
+		} else {
+			return (myShape*256);
+		}
+	}
 	
 	public boolean isVisible() {
 		return visible;
