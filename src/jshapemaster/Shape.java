@@ -64,7 +64,7 @@ public class Shape {
 	public void move() {
 		
 		skipIt++;
-		if (skipIt == 4) {
+		if (skipIt == 6) {
 		skipIt = 0; 
 		
 		x += dx;
@@ -77,6 +77,12 @@ public class Shape {
 		if ((y<0)||(y>(600-height))) {
 			y -= dy;
 			dy = (-dy);}
+		
+		if (myAnimation == 3) {
+		myAnimation = 0;
+		} else {
+			myAnimation++;
+		}
 		}
 	}
 	
