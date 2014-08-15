@@ -112,23 +112,7 @@ public class Shape {
 		return imageMouth;
 	}
 	
-/*	public Image getImage() {
-		switch(myShape){
-		case 0:
-			return imageCircle;
-		case 1:
-			return imageSquare;
-		case 2:
-			return imageStar;
-		case 3:
-			return imageTriangle;
-		default:
-			return imageCircle;
-		}
 
-		return image;
-	}
-*/	
 	public Rectangle getBounds() {
 		return new Rectangle(x, y, width, height);
 	}
