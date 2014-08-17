@@ -27,6 +27,8 @@ public class Shape {
 	private int myShape, myEyez, myMouth;
 	static int myAnimation, myEyezAnimation, myMouthAnimation;
 	private int skipIt;
+	private int shapeAnimationDelay; // for delaying the animation of the shapes
+
 	//private int wait;     /* ****** for randomizing ******************* */
 
 	
@@ -69,7 +71,7 @@ public class Shape {
 	public void move() {
 		
 		skipIt++;
-		if (skipIt == 6) {
+		if (skipIt == 5) {
 		skipIt = 0; 
 		
 		x += dx;
@@ -83,10 +85,25 @@ public class Shape {
 			y -= dy;
 			dy = (-dy);}
 		
-		if (myAnimation == 3) {
-		myAnimation = 0;
-		} else {
-			myAnimation++;
+		shapeAnimationDelay++;
+		if (shapeAnimationDelay == 5) {
+			shapeAnimationDelay = 0;
+
+			if (myAnimation == 3) {
+				myAnimation = 0;
+				} else {
+					myAnimation++;
+				}
+				if (myEyezAnimation == 7) {
+				myEyezAnimation = 0;
+				} else {
+					myEyezAnimation++;
+				}
+				if (myMouthAnimation == 3) {
+				myMouthAnimation = 0;
+				} else {
+					myMouthAnimation++;
+				}	
 		}
 		}
 	}
