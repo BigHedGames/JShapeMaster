@@ -110,7 +110,7 @@ public class JSMBoard extends JPanel implements ActionListener {
 			newDX = r.nextInt(3);
 			newDY = r.nextInt(3);
 			newShape = r.nextInt(4);
-			shapes.add(new Shape(posX, posY, newDX, newDY, newShape, 0));
+			shapes.add(new Shape(posX, posY, newDX, newDY, newShape, 0, 0, 0, 0, 0));
 		}
 	}
 	
@@ -155,10 +155,10 @@ public class JSMBoard extends JPanel implements ActionListener {
 						(a.myAnimation*128), a.getMyShape(), (a.myAnimation*128)+127, (a.getMyShape())+127, this);
 				g2d.drawImage(a.getImageEyes(), 
 						a.getX(), a.getY(), a.getX()+(spriteSize+1), a.getY()+(spriteSize+1), 
-						(0*128), (0*128), (0*128)+127, (0*128)+127, this);
+						(0*128), (a.getMyEyez()), (0*128)+127, (a.getMyEyez())+127, this);
 				g2d.drawImage(a.getImageMouth(), 
 						a.getX(), a.getY(), a.getX()+(spriteSize+1), a.getY()+(spriteSize+1), 
-						(0*128), (0*128), (0*128)+127, (0*128)+127, this);
+						(0*128), (a.getMyMouth()), (0*128)+127, (a.getMyMouth())+127, this);
 
 		}
 		

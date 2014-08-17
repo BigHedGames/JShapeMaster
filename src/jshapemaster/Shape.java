@@ -13,8 +13,8 @@ import javax.swing.ImageIcon;
 public class Shape {
 	
 	private String shapePix = "RedBlueShapes.png";
-	private String shapeEyez = "MAD_EYEZ.png";
-	private String shapeMouth = "MAD_MOUTHZ.png";
+	private String shapeEyez = "Shapez_Eyez.png";
+	private String shapeMouthz = "Shapez_Mouthz.png";
 	
 	private int x;
 	private int y;
@@ -24,20 +24,20 @@ public class Shape {
 	private Image image;
 	private Image imageEyes, imageMouth;
 	private int dx, dy;
-	private int myShape;
-	static int myAnimation;
+	private int myShape, myEyez, myMouth;
+	static int myAnimation, myEyezAnimation, myMouthAnimation;
 	private int skipIt;
 	//private int wait;     /* ****** for randomizing ******************* */
 
 	
-	public Shape(int x, int y, int dx, int dy, int myShape, int myAnimation) {
+	public Shape(int x, int y, int dx, int dy, int myShape, int myAnimation, int myEyez, int myEyezAnimation, int myMouth, int myMouthAnimation) {
 		ImageIcon ii = new ImageIcon(this.getClass().getResource(shapePix));
 		image = ii.getImage();
 
 		ImageIcon ie = new ImageIcon(this.getClass().getResource(shapeEyez));
 		imageEyes = ie.getImage();
 
-		ImageIcon iMouth = new ImageIcon(this.getClass().getResource(shapeMouth));
+		ImageIcon iMouth = new ImageIcon(this.getClass().getResource(shapeMouthz));
 		imageMouth = iMouth.getImage();
 
 		//width = image.getWidth(null);
@@ -51,6 +51,11 @@ public class Shape {
 		this.dy = dy;
 		this.myShape = myShape;
 		this.myAnimation = myAnimation;
+		this.myEyez = myEyez;
+		this.myEyezAnimation = myEyezAnimation;
+		this.myMouth = myMouth;
+		this.myMouthAnimation = myMouthAnimation;
+		
 //		dx = 1;
 //		dy = 1;
 		skipIt = 0;
@@ -103,6 +108,26 @@ public class Shape {
 			return ((myShape*256)+128);
 		} else {
 			return (myShape*256);
+		}
+	}
+	
+	public int getMyEyez() {
+		if (myShape == Master.masterAnimationShape ){
+			myEyez = 128;
+			return myEyez;
+		} else {
+			myEyez = 0;
+			return myEyez;
+		}
+	}
+	
+	public int getMyMouth() {
+		if (myShape == Master.masterAnimationShape ){
+			myMouth = 128;
+			return myMouth;
+		} else {
+			myMouth = 0;
+			return myMouth;
 		}
 	}
 	
