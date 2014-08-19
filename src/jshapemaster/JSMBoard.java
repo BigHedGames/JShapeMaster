@@ -153,13 +153,19 @@ public class JSMBoard extends JPanel implements ActionListener {
 				g2d.drawImage(a.getImage(), 
 						a.getX(), a.getY(), a.getX()+(spriteSize+1), a.getY()+(spriteSize+1), 
 						(a.myAnimation*128), a.getMyShape(), (a.myAnimation*128)+127, (a.getMyShape())+127, this);
-				g2d.drawImage(a.getImageEyes(), 
-						a.getX(), a.getY(), a.getX()+(spriteSize+1), a.getY()+(spriteSize+1), 
-						(a.myEyezAnimation*128), (a.getMyEyez()), (a.myEyezAnimation*128)+127, (a.getMyEyez())+127, this);
 				g2d.drawImage(a.getImageMouth(), 
 						a.getX(), a.getY(), a.getX()+(spriteSize+1), a.getY()+(spriteSize+1), 
 						(a.myMouthAnimation*128), (a.getMyMouth()), (a.myMouthAnimation*128)+127, (a.getMyMouth())+127, this);
-
+				
+				if (a.getShape() == master.getMasterAnimationShape()) {
+					g2d.drawImage(a.getImageEyes(), 
+							a.getX(), a.getY(), a.getX()+(spriteSize+1), a.getY()+(spriteSize+1), 
+							(a.myEyezAnimation*128), (a.getMyEyez()), (a.myEyezAnimation*128)+127, (a.getMyEyez())+127, this);
+				} else {
+					g2d.drawImage(a.getImageEyes(), 
+							a.getX(), a.getY(), a.getX()+(spriteSize+1), a.getY()+(spriteSize+1), 
+							(a.getMyEyezDirection()*128), (a.getMyEyez()), (a.getMyEyezDirection()*128)+127, (a.getMyEyez())+127, this);
+				}
 		}
 		
 		g2d.setColor(Color.WHITE);

@@ -106,6 +106,10 @@ public class Master {
 	public int getY() {
 		return y;
 	}
+
+	public int getMasterAnimationShape() {
+		return masterAnimationShape;
+		}
 	
 	public Image getImage() {
 		return image;

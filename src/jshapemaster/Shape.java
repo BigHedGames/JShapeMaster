@@ -94,16 +94,17 @@ public class Shape {
 				} else {
 					myAnimation++;
 				}
-				if (myEyezAnimation == 7) {
-				myEyezAnimation = 0;
-				} else {
-					myEyezAnimation++;
-				}
-				if (myMouthAnimation == 3) {
+			if (myMouthAnimation == 3) {
 				myMouthAnimation = 0;
 				} else {
 					myMouthAnimation++;
 				}	
+			if (myEyezAnimation == 7) {
+				myEyezAnimation = 0;
+				} else {
+					myEyezAnimation++;
+				}
+
 		}
 		}
 	}
@@ -136,6 +137,10 @@ public class Shape {
 			myEyez = 0;
 			return myEyez;
 		}
+	}
+	
+	public int getMyEyezDirection() {
+		return 1;
 	}
 	
 	public int getMyMouth() {
