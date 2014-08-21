@@ -121,7 +121,7 @@ public class Shape {
 		return myShape;
 	}
 
-	public int getMyShape() {
+	public int getMyShapeMasterIndexed() {
 		if (myShape == Master.masterAnimationShape ){
 			return ((myShape*256)+128);
 		} else {
@@ -137,10 +137,6 @@ public class Shape {
 			myEyez = 0;
 			return myEyez;
 		}
-	}
-	
-	public int getMyEyezDirection() {
-		return 1;
 	}
 	
 	public int getMyMouth() {

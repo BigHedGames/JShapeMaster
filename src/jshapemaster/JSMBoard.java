@@ -41,7 +41,7 @@ public class JSMBoard extends JPanel implements ActionListener {
 	private boolean ingame;
 	static int B_WIDTH;
 	static int B_HEIGHT;
-	static int spriteSize; // using this to temporarily pass size of sprites throughout the program
+	static int spriteSize; // using this to temporarily pass size of sprite throughout the program
 	private int counter;
 	private int posX;     /* ****** for randomizing ******************* */
 	private int posY;     /* ****** for randomizing ******************* */
@@ -152,7 +152,7 @@ public class JSMBoard extends JPanel implements ActionListener {
 				//g2d.drawImage(a.getImage(), a.getX(), a.getY(), spriteSize, spriteSize, this);
 				g2d.drawImage(a.getImage(), 
 						a.getX(), a.getY(), a.getX()+(spriteSize+1), a.getY()+(spriteSize+1), 
-						(a.myAnimation*128), a.getMyShape(), (a.myAnimation*128)+127, (a.getMyShape())+127, this);
+						(a.myAnimation*128), a.getMyShapeMasterIndexed(), (a.myAnimation*128)+127, (a.getMyShapeMasterIndexed())+127, this);
 				g2d.drawImage(a.getImageMouth(), 
 						a.getX(), a.getY(), a.getX()+(spriteSize+1), a.getY()+(spriteSize+1), 
 						(a.myMouthAnimation*128), (a.getMyMouth()), (a.myMouthAnimation*128)+127, (a.getMyMouth())+127, this);
@@ -164,7 +164,8 @@ public class JSMBoard extends JPanel implements ActionListener {
 				} else {
 					g2d.drawImage(a.getImageEyes(), 
 							a.getX(), a.getY(), a.getX()+(spriteSize+1), a.getY()+(spriteSize+1), 
-							(a.getMyEyezDirection()*128), (a.getMyEyez()), (a.getMyEyezDirection()*128)+127, (a.getMyEyez())+127, this);
+							(whereIsHe(a.getX(), a.getY(), master.getX(), master.getY())*128), (a.getMyEyez()), 
+							(whereIsHe(a.getX(), a.getY(), master.getX(), master.getY())*128)+127, (a.getMyEyez())+127, this);
 				}
 		}
 		
@@ -262,5 +263,62 @@ public class JSMBoard extends JPanel implements ActionListener {
 			master.keyPressed(e);
 		}
 	}
-	
+
+	/*
+	 * This is a little routine that give a single int locator for position of the destX & destY
+	 * from the sourceX & sourceY... typically from the shape to the master character...
+	 * in a format like:
+	 *                          0
+	 *                        7   1
+	 *                      6   X   2
+	 *                        5   3
+	 *                          4
+	 *  where X is the source position (X & Y) and the number represents the integer returned for the destination
+	 *  or dest location (X & Y)                        
+	 */
+	public int whereIsHe(int sourceX, int sourceY, int destX, int destY) {
+		if (sourceX == destX) // he is above or below us...
+		{
+			if (sourceY >= destY) // he is above us
+			{
+				return 0;
+			} else                // he must be below us then...
+			{
+				return 4;   
+			}
+		}
+		
+		if (sourceY == destY) // he is to the right or left of us
+		{
+			if (sourceX <= destX) // he is to the right of us
+			{
+				return 2;
+			} else                // he is to the left of us
+			{
+				return 6;
+			}
+		}
+		if (sourceX < destX) // he is to the right
+		{
+			if (sourceY > destY) // he is above
+				{
+				return 1;
+				} else   // he must be below
+				{
+				return 3;
+				}
+		}
+		if (sourceX > destX) // he is to the left
+		{
+			if (sourceY > destY) // he is above
+				{
+				return 7;
+				} else   // he must be below
+				{
+				return 5;
+				}
+		}
+		
+		return 0;
+	}
 }
