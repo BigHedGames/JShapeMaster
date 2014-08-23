@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import java.util.Random;
+//import java.math.*;
 
 
 /*
@@ -277,7 +278,9 @@ public class JSMBoard extends JPanel implements ActionListener {
 	 *  or dest location (X & Y)                        
 	 */
 	public int whereIsHe(int sourceX, int sourceY, int destX, int destY) {
-		if (sourceX == destX) // he is above or below us...
+		
+//		if (sourceX == destX) // he is above or below us...
+		if (Math.abs(sourceX-destX) < 4) // he is approx above or below us...
 		{
 			if (sourceY >= destY) // he is above us
 			{
@@ -288,7 +291,8 @@ public class JSMBoard extends JPanel implements ActionListener {
 			}
 		}
 		
-		if (sourceY == destY) // he is to the right or left of us
+//		if (sourceY == destY) // he is to the right or left of us
+		if (Math.abs(sourceY-destY) < 4)  // he is approx to the right or left of us
 		{
 			if (sourceX <= destX) // he is to the right of us
 			{
@@ -318,7 +322,6 @@ public class JSMBoard extends JPanel implements ActionListener {
 				return 5;
 				}
 		}
-		
 		return 0;
 	}
 }
