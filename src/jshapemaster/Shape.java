@@ -71,7 +71,7 @@ public class Shape {
 	public void move() {
 		
 		skipIt++;
-		if (skipIt == 5) {
+		if (true) {
 		skipIt = 0; 
 		
 		x += dx;
