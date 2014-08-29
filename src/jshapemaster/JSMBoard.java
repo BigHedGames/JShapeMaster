@@ -128,8 +128,6 @@ public class JSMBoard extends JPanel implements ActionListener {
 				 * image and the coordinates from the sprite class
 				 */
 
-				//g2d.drawImage(master.getImage(), master.getX(), master.getY(), this);
-				//g2d.drawImage(master.getImage(), master.getX(), master.getY(), 64, 64, this);
 				g2d.drawImage(master.getImage(), 
 						master.getX(), master.getY(), master.getX()+(spriteSize+1), master.getY()+(spriteSize+1), 
 						(Master.masterAnimation*128), (Master.masterAnimationShape*128), (Master.masterAnimation*128)+127, (Master.masterAnimationShape*128)+127, this);
@@ -149,8 +147,6 @@ public class JSMBoard extends JPanel implements ActionListener {
 			for (int i = 0; i < shapes.size(); i++) {
 			Shape a = (Shape)shapes.get(i);
 			if (a.isVisible())
-				//g2d.drawImage(a.getImage(), a.getX(), a.getY(), this);
-				//g2d.drawImage(a.getImage(), a.getX(), a.getY(), spriteSize, spriteSize, this);
 				g2d.drawImage(a.getImage(), 
 						a.getX(), a.getY(), a.getX()+(spriteSize+1), a.getY()+(spriteSize+1), 
 						(a.myAnimation*128), a.getMyShapeMasterIndexed(), (a.myAnimation*128)+127, (a.getMyShapeMasterIndexed())+127, this);
@@ -205,20 +201,12 @@ public class JSMBoard extends JPanel implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		
-		// if we destroy all alien ships, the game is finished
+		// if there are no more shapes, the game is finished
 		if (shapes.size()==0) {
 			ingame = false;
 		}
 		
-/*		ArrayList<Missile> ms = craft.getMissiles();
 		
-		for (int i = 0; i < ms.size(); i++) {
-			Missile m = (Missile) ms.get(i);
-			if (m.isVisible())
-				m.move();
-			else ms.remove(i);
-		}
-*/		
 		/*
 		 * The paint() method draws all shapes from the shapes ArrayList.
 		 * They are drawn only if they have not been previously destroyed.
@@ -266,15 +254,15 @@ public class JSMBoard extends JPanel implements ActionListener {
 	}
 
 	/*
-	 * This is a little routine that give a single int locator for position of the destX & destY
+	 * This is a little routine that gives a single int locator for position of the destX & destY
 	 * from the sourceX & sourceY... typically from the shape to the master character...
 	 * in a format like:
 	 *                          0
 	 *                        7   1
-	 *                      6   X   2
+	 *                      6   S   2
 	 *                        5   3
 	 *                          4
-	 *  where X is the source position (X & Y) and the number represents the integer returned for the destination
+	 *  where S is the source position (X & Y) and the number represents the integer returned for the approx destination
 	 *  or dest location (X & Y)                        
 	 */
 	public int whereIsHe(int sourceX, int sourceY, int destX, int destY) {
