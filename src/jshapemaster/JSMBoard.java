@@ -50,6 +50,9 @@ public class JSMBoard extends JPanel implements ActionListener {
 	private int newDY;     /* ****** for randomizing ******************* */
 	private int newShape; /* ******** for randomizing ****************** */
 	
+	// velocity related constant... from c#...  ****************************************
+	//protected readonly double DIAGONAL_FACTOR = 1.0 / Math.Sqrt(2.0); ****************
+	static double DIAGONAL_FACTOR = Math.sqrt(2.0);
 	
 	public JSMBoard() {
 		
