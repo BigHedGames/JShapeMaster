@@ -38,7 +38,7 @@ public class Master {
 	final int SQUARE  = 1;
 	final int STAR = 2;
 	final int TRIANGLE = 3;
-	
+	final int VELOCITY = 2; // the speed our master shape moves at...
 	
 	
 	private int dx;
@@ -134,61 +134,88 @@ public class Master {
 	
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
+		
+		// check for the diagonals first!
+		if (key == KeyEvent.VK_RIGHT && key == KeyEvent.VK_UP) {
+			dx = (int)(VELOCITY*JSMBoard.DIAGONAL_FACTOR);
+			dy = (int)(-VELOCITY*JSMBoard.DIAGONAL_FACTOR);
+			dx = 0;
+			dy = 0;
+		} else if(key == KeyEvent.VK_RIGHT && key == KeyEvent.VK_DOWN) {
+			dx = (int)(VELOCITY*JSMBoard.DIAGONAL_FACTOR);
+			dy = (int)(VELOCITY*JSMBoard.DIAGONAL_FACTOR);
+			dx = 0;
+			dy = 0;
 
-		if (key == KeyEvent.VK_LEFT) {
-			dx = -2;
-			if (masterAnimation == 3) {
-				masterAnimation = 0;
+		} else if(key == KeyEvent.VK_LEFT && key == KeyEvent.VK_UP) {
+			dx = (int)(-VELOCITY*JSMBoard.DIAGONAL_FACTOR);
+			dy = (int)(-VELOCITY*JSMBoard.DIAGONAL_FACTOR);
+			dx = 0;
+			dy = 0;
+
+		} else if (key == KeyEvent.VK_LEFT && key == KeyEvent.VK_DOWN){
+			dx = (int)(VELOCITY*JSMBoard.DIAGONAL_FACTOR);
+			dy = (int)(-VELOCITY*JSMBoard.DIAGONAL_FACTOR);
+			dx = 0;
+			dy = 0;
+
+		} else { // now look for the simple 4 directions
+			if (key == KeyEvent.VK_LEFT) {
+				dx = -VELOCITY;
+				if (masterAnimation == 3) {
+					masterAnimation = 0;
+					} else {
+					masterAnimation ++;}
+				masterMouthAnimation = 1;
+				if ((masterEyezAnimation == 0)||(masterEyezAnimation == 10)) {
+					masterEyezAnimation = 5;
 				} else {
-				masterAnimation ++;}
-			masterMouthAnimation = 1;
-			if ((masterEyezAnimation == 0)||(masterEyezAnimation == 10)) {
-				masterEyezAnimation = 5;
-			} else {
-				masterEyezAnimation = 10;
+					masterEyezAnimation = 10;
+				}
 			}
-		}
-		
-		if (key == KeyEvent.VK_RIGHT) {
-			dx = 2;
-			if (masterAnimation == 3) {
-				masterAnimation = 0;
+			
+			if (key == KeyEvent.VK_RIGHT) {
+				dx = VELOCITY;
+				if (masterAnimation == 3) {
+					masterAnimation = 0;
+					} else {
+					masterAnimation ++;}
+				masterMouthAnimation = 1;
+				if (masterEyezAnimation == 0) {
+					masterEyezAnimation = 2;
 				} else {
-				masterAnimation ++;}
-			masterMouthAnimation = 1;
-			if (masterEyezAnimation == 0) {
-				masterEyezAnimation = 2;
-			} else {
-				masterEyezAnimation = 0;
+					masterEyezAnimation = 0;
+				}
 			}
-		}
-		
-		if (key == KeyEvent.VK_UP) {
-			dy = -2;
-			if (masterAnimation == 3) {
-				masterAnimation = 0;
+			
+			if (key == KeyEvent.VK_UP) {
+				dy = -VELOCITY;
+				if (masterAnimation == 3) {
+					masterAnimation = 0;
+					} else {
+					masterAnimation ++;}
+				masterMouthAnimation = 1;
+				if ((masterEyezAnimation == 0)||(masterEyezAnimation == 9)) {
+					masterEyezAnimation = 7;
 				} else {
-				masterAnimation ++;}
-			masterMouthAnimation = 1;
-			if ((masterEyezAnimation == 0)||(masterEyezAnimation == 9)) {
-				masterEyezAnimation = 7;
-			} else {
-				masterEyezAnimation = 9;
+					masterEyezAnimation = 9;
+				}
 			}
-		}
-		
-		if (key == KeyEvent.VK_DOWN) {
-			dy = 2;
-			if (masterAnimation == 3) {
-				masterAnimation = 0;
+			
+			if (key == KeyEvent.VK_DOWN) {
+				dy = VELOCITY;
+				if (masterAnimation == 3) {
+					masterAnimation = 0;
+					} else {
+					masterAnimation ++;}
+				masterMouthAnimation = 1;
+				if ((masterEyezAnimation == 0)||(masterEyezAnimation == 9)) {
+					masterEyezAnimation = 8;
 				} else {
-				masterAnimation ++;}
-			masterMouthAnimation = 1;
-			if ((masterEyezAnimation == 0)||(masterEyezAnimation == 9)) {
-				masterEyezAnimation = 8;
-			} else {
-				masterEyezAnimation = 9;
+					masterEyezAnimation = 9;
+				}
 			}
+
 		}
 		
 		if (key == KeyEvent.VK_A) {
@@ -207,7 +234,7 @@ public class Master {
 
 	/*
 	 * When we release the cursor key we set the appropriate dx or dy 
-	 * variable to zero.  The spacecraft will stop moving.
+	 * variable to zero.  The master shape will stop moving.
 	 */
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
